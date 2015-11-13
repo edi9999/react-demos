@@ -4,15 +4,25 @@
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   </head>
   <body>
     <script type="text/babel">
+
+
       var Input = React.createClass({
         getInitialState: function() {
-          return {value: 'Hello!'};
+          return {value: this.props.value};
         },
         handleChange: function(event) {
           this.setState({value: event.target.value});
+        },
+        componentDidMount: function() {
+          var self = this;
+
+          jQuery.get("test.json", function (value) {
+            self.setState({value: value.input})
+          })
         },
         render: function () {
           var value = this.state.value;
@@ -24,8 +34,8 @@
           );
         }
       });
+        ReactDOM.render(<Input value="F"/>, document.body);
 
-      ReactDOM.render(<Input/>, document.body);
     </script>
   </body>
 </html>

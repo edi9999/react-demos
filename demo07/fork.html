@@ -8,15 +8,23 @@
   <body>
     <div id="example"></div>
 
-<script type="text/babel">
-  var MyComponent = React.createClass({
+
+    <script type="text/babel">
+var MyComponent = React.createClass({
+  getDefaultProps: function() {
+      return {defaultValue:"Max"}
+  },
+  getInitialState: function() {
+    return {text:this.props.defaultValue}
+  },
   handleClick: function() {
     this.refs.myTextInput.focus();
+    this.setState({text:"foo"})
   },
   render: function() {
     return (
       <div>
-        <input type="text" ref="myTextInput" />
+        <input type="text" id="machin" ref="myTextInput" value={this.state.text}/>
         <input type="button" value="Focus the text input" onClick={this.handleClick} />
       </div>
     );
@@ -24,9 +32,15 @@
 });
 
 ReactDOM.render(
-  <MyComponent />,
+  <div>
+  <MyComponent defaultValue={"Henri"}/>
+  <MyComponent/>
+  <MyComponent/>
+  <MyComponent defaultValue={"foo"}/>
+  </div>,
   document.getElementById('example')
 );
-</script>
+    </script>
   </body>
 </html>
+

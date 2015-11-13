@@ -19,14 +19,14 @@ var LikeButton = React.createClass({
     var text = this.state.liked ? 'like' : 'haven\'t liked';
     return (
       <p onClick={this.handleClick}>
-        You {text} this. Click to toggle.
+        You {text} {this.props.subject}. Click to toggle.
       </p>
     );
   }
 });
 
 ReactDOM.render(
-  <LikeButton />,
+  <LikeButton subject="cosmos"/>,
   document.getElementById('example')
 );
     </script>

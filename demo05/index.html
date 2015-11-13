@@ -9,12 +9,18 @@
     <script type="text/babel">
       var NotesList = React.createClass({
         render: function() {
+          console.log(this.props.children)
+          console.log(this.props.children[2].props.children)
+          /*
+{
+                
+          */
           return (
             <ol>
               {
-                React.Children.map(this.props.children, function (child) {
-                  return <li>{child}</li>;
-                })
+                this.props.children.map(function (child) {
+                    return <li>{child}</li>;
+                  })
               }
             </ol>
           );
@@ -25,6 +31,7 @@
         <NotesList>
           <span>hello</span>
           <span>world</span>
+          <div><span>world</span></div>
         </NotesList>,
         document.body
       );
